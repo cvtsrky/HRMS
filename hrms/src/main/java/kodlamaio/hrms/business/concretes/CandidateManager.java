@@ -95,7 +95,7 @@ public class CandidateManager implements CandidateService {
 	
 	private boolean validationForCandidate(Candidate candidate) {
 		if(candidate.getFirstName()==null && candidate.getLastName()==null&& 
-				candidate.getNationalId()==null&&candidate.getEmail()==null&&candidate.getBirthYear()>2021 && candidate.getBirthYear()<1940) {
+				candidate.getNationalId()==null&&candidate.getEmail()==null&&candidate.getBirthYear()==null) {
 			return false;
 		}
 		else {
