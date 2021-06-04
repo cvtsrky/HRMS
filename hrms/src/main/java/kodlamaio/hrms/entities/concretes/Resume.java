@@ -22,7 +22,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name="resumes")
-
 public class Resume {
 	
 	@Id
@@ -47,7 +46,7 @@ public class Resume {
 	private String description;
 	
 	@Column(name="created_date")
-	private LocalDate createdDate;
+	private LocalDate createdDate=LocalDate.now();
 	
 	@Column(name="updated_date")
 	private LocalDate updatedDate;

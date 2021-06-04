@@ -40,6 +40,6 @@ public class Technology {
 	private String description;
 	
 	@Column(name="created_date")
-	private LocalDate createdDate;
+	private LocalDate createdDate=LocalDate.now();
 	
 }

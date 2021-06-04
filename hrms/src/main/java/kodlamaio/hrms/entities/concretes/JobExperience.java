@@ -51,7 +51,7 @@ public class JobExperience {
 	private LocalDate endedDate;
 	
 	@Column(name="created_date")
-	private LocalDate createdDate;
+	private LocalDate createdDate=LocalDate.now();
 	
 
 }

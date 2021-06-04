@@ -44,6 +44,6 @@ public class Language {
 	private char langLevel;
 	
 	@Column(name="created_date")
-	private LocalDate createdDate;
+	private LocalDate createdDate=LocalDate.now();
 
 }

@@ -45,7 +45,7 @@ public class JobAdvertisement {
 	private LocalDate lastApplyDate;
 	
 	@Column(name="create_date", nullable = false)
-	private LocalDate createDate;
+	private LocalDate createDate = LocalDate.now();
 	
 	@ManyToOne()
 	@JoinColumn(name="employer_id")
