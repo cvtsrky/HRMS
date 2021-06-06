@@ -16,7 +16,8 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.ResumeDao;
 import kodlamaio.hrms.entities.concretes.Resume;
-import kodlamaio.hrms.entities.dtos.ResumeDto;
+import kodlamaio.hrms.entities.dtos.ResumeAddDto;
+import kodlamaio.hrms.entities.dtos.ResumeGetDto;
 
 @Service
 public class ResumeManager implements ResumeService {
@@ -36,17 +37,17 @@ public class ResumeManager implements ResumeService {
 	}
 
 	@Override
-	public Result add(ResumeDto resumeDto) {
+	public Result add(ResumeAddDto resumeDto) {
 
 		resumeDao.save((Resume) dtoConverterService.dtoClassConverter(resumeDto, Resume.class));
-		return new SuccessResult("Added");
+		return new SuccessResult("Kayıt Başarılı");
 
 	}
 
 	@Override
-	public DataResult<List<ResumeDto>> getAll() {
-		return new SuccessDataResult<List<ResumeDto>>(
-				dtoConverterService.dtoConverter(resumeDao.findAll(), ResumeDto.class), "Data Listed");
+	public DataResult<List<ResumeGetDto>> getAll() {
+		return new SuccessDataResult<List<ResumeGetDto>>(
+				dtoConverterService.dtoConverter(resumeDao.findAll(), ResumeGetDto.class), "Data Listelendi");
 
 	}
 
@@ -61,6 +62,13 @@ public class ResumeManager implements ResumeService {
 		resumeDao.save(Cv);
 		return new SuccessResult("Kayıt Başarılı");
 
+	}
+
+	@Override
+	public DataResult<List<ResumeGetDto>> findAllByCandidateId(int id) {
+		return new SuccessDataResult<List<ResumeGetDto>>(
+				dtoConverterService.dtoConverter(resumeDao.findAllByCandidateId(id), ResumeGetDto.class),
+				"Data Listelendi");
 	}
 
 }

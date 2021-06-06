@@ -14,30 +14,33 @@ import org.springframework.web.bind.annotation.RestController;
 import kodlamaio.hrms.business.abstracts.JobExperienceService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.JobExperience;
+import kodlamaio.hrms.entities.dtos.JobExperienceDto;
 
 @RestController
 @RequestMapping("api/jobExperience")
 public class JobExperienceController {
 
 	private JobExperienceService jobExperienceService;
-	
+
 	@Autowired
 	public JobExperienceController(JobExperienceService jobExperienceService) {
 		super();
 		this.jobExperienceService = jobExperienceService;
 	}
 
-
 	@GetMapping("/getall")
-	public DataResult<List<JobExperience>> getAll(){
+	public DataResult<List<JobExperienceDto>> getAll() {
 		return this.jobExperienceService.getAll();
 	}
-	
-	
+
+	@GetMapping("/getOrderByDate")
+	public DataResult<List<JobExperienceDto>> findAllByResumeIdOrderByEndedDateDesc(int id) {
+		return this.jobExperienceService.findAllByResumeIdOrderByEndedDateDesc(id);
+	}
+
 	@PostMapping("/add")
-	public Result add(@Valid @RequestBody JobExperience jobExperience) {
-		return this.jobExperienceService.add(jobExperience);
-	  }
-	
+	public Result add(@Valid @RequestBody JobExperienceDto jobExperienceDto) {
+		return this.jobExperienceService.add(jobExperienceDto);
+	}
+
 }

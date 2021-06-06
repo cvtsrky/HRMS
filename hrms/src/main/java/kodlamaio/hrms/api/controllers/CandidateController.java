@@ -2,6 +2,8 @@ package kodlamaio.hrms.api.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,24 +17,26 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Candidate;
 
 @RestController
-@RequestMapping("api/candidates")
+@RequestMapping("/api/candidates")
 public class CandidateController {
-	private CandidateService candidateService;
-	
+
+	private CandidateService candidatesService;
+
 	@Autowired
-	public CandidateController(CandidateService candidateService) {
+	public CandidateController(CandidateService candidatesService) {
 		super();
-		this.candidateService = candidateService;
+		this.candidatesService = candidatesService;
+
 	}
-	
+
 	@GetMapping("/getall")
-	public DataResult<List<Candidate>> getAll(){
-		return this.candidateService.getAll();
+	public DataResult<List<Candidate>> getAll() {
+		return this.candidatesService.getAll();
 	}
-	
+
 	@PostMapping("/add")
-	public Result add(@RequestBody Candidate candidate) {
-		return this.candidateService.add(candidate);
+	public Result newCandidate(@Valid @RequestBody Candidate newCandidate) {
+		return candidatesService.add(newCandidate);
 	}
-	
+
 }

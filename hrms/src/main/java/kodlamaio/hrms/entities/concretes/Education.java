@@ -1,6 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
+import javax.validation.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -19,12 +19,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 @Table(name="resume_edu")
 public class Education {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
@@ -35,22 +35,24 @@ public class Education {
 	@JoinColumn(name="resume_id")
 	private Resume resume;
 	
-	@Column(name="school_name",nullable = false)	
+	@Column(name="school_name")
+	@NotBlank(message="Boş Geçilemez")
 	private String schoolName;
 	
 	@ManyToOne(targetEntity = Graduate.class)
 	@JoinColumn(name = "graduate_id", referencedColumnName =  "id" ,nullable = false)
 	private Graduate graduate;
 		
-	@Column(name="school_department",nullable = false)	
+	@Column(name="school_department")
+	@NotBlank(message="Boş Geçilemez")
 	private String schoolDepartment;
 	
 	@Column(name="started_date")
-	private LocalDate startedDate;
+	private Date startedDate;
 	
 	@Column(name="ended_date")
-	private LocalDate endedDate;
+	private Date endedDate;
 	
 	@Column(name="created_date")
-	private LocalDate createdDate = LocalDate.now();
+	private Date createdDate;
 }

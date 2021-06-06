@@ -17,27 +17,31 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.dtos.EducationDto;
 
 @RestController
-@RequestMapping("/api/education")
+@RequestMapping("api/education")
 public class EducationController {
-	
-private EducationService educationService;
-	
+
+	private EducationService educationService;
 
 	@Autowired
 	public EducationController(EducationService educationService) {
 		super();
 		this.educationService = educationService;
-		
+
 	}
-	
+
 	@GetMapping("/getall")
-	public DataResult<List<EducationDto>> getAll(){
+	public DataResult<List<EducationDto>> getAll() {
 		return this.educationService.getAll();
 	}
-	
-	
+
+	@GetMapping("/getOrderByDate")
+	public DataResult<List<EducationDto>> findAllByResumeIdOrderByEndedDateDesc(int id) {
+		return this.educationService.findAllByResumeIdOrderByEndedDateDesc(id);
+	}
+
 	@PostMapping("/add")
 	public Result add(@Valid @RequestBody EducationDto educationDto) {
 		return this.educationService.add(educationDto);
-	  }
+	}
+
 }

@@ -1,6 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -22,28 +23,28 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="resume_langs")
+@Table(name = "resume_langs")
 public class Language {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name = "id")
 	private int id;
-	
+
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne(targetEntity = Resume.class)
-	@JoinColumn(name="resume_id")
+	@JoinColumn(name = "resume_id")
 	private Resume resume;
-	
-	
-	@Column(name="language",nullable = false)
+
+	@NotBlank(message = "Boş Geçilemez")
+	@Column(name = "language")
 	private String language;
-	
-	
-	@Column(name="lang_level",nullable = false)
+
+	@NotBlank(message = "Boş Geçilemez")
+	@Column(name = "lang_level")
 	private char langLevel;
-	
-	@Column(name="created_date")
-	private LocalDate createdDate=LocalDate.now();
+
+	@Column(name = "created_date")
+	private Date createdDate;
 
 }
