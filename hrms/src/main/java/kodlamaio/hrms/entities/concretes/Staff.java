@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @PrimaryKeyJoinColumn(name = "user_id")
-public class Stuff extends User {
+public class Staff extends User {
 
 	@NotBlank(message = "İsim alani bos olamaz.")
 	@Column(name = "name")

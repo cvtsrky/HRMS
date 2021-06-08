@@ -5,34 +5,34 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kodlamaio.hrms.business.abstracts.StuffService;
+import kodlamaio.hrms.business.abstracts.StaffService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
-import kodlamaio.hrms.dataAccess.abstracts.StuffDao;
-import kodlamaio.hrms.entities.concretes.Stuff;
+import kodlamaio.hrms.dataAccess.abstracts.StaffDao;
+import kodlamaio.hrms.entities.concretes.Staff;
 
 @Service
-public class StuffManager implements StuffService {
+public class StaffManager implements StaffService {
 
-	private StuffDao stuffdao;
+	private StaffDao staffDao;
 
 	@Autowired
-	public StuffManager(StuffDao stuffdao) {
+	public StaffManager(StaffDao stuffdao) {
 		super();
-		this.stuffdao = stuffdao;
+		this.staffDao = stuffdao;
 	}
 
 	@Override
-	public DataResult<List<Stuff>> getAll() {
+	public DataResult<List<Staff>> getAll() {
 
-		return new SuccessDataResult<List<Stuff>>(this.stuffdao.findAll(), "Datalar listelendi");
+		return new SuccessDataResult<List<Staff>>(this.staffDao.findAll(), "Datalar listelendi");
 	}
 
 	@Override
-	public Result add(Stuff stuff) {
-		this.stuffdao.save(stuff);
+	public Result add(Staff staff) {
+		this.staffDao.save(staff);
 		return new SuccessResult("Eklendi");
 	}
 
